@@ -8,10 +8,7 @@
 <body>
     <header></header>
     <main>
-        <div id="yyy"></div>
-        <div class="banner" style="background-image: url(./1.jpg)">
-            <div class="mask"></div>
-          </div>
+        <div id="yyy"></div> 
     </main>
     <footer></footer>
     <script>
@@ -44,11 +41,13 @@
     index = 0
     while(index< keys['length']){
         ddd = document.createElement('div')
+        ddd.className = 'dddd'
         yyy.appendChild(ddd)
         row = keys[index]
         index2 = 0
         while(index2< row['length']){
            kkk = document.createElement('kbd')
+           kkk.className = 'kkkk'
            kkk.textContent = row[index2]
            bbb = document.createElement('button')
            bbb.textContent = '编辑'
