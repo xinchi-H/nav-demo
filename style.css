@@ -3,12 +3,18 @@
 a{
   text-decoration: none;}
 
-
+body{
+  background: #c5c5c5 url(./1.jpg) no-repeat center center;
+  background-size: cover;
+}
 main{
-  text-align: center;}
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;}
 
 #yyy{
-  width: 100%;
   display: inline-block;
 }
 
