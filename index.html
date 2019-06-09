@@ -12,13 +12,77 @@
     </main>
     <footer></footer>
     <script>
-    var keys = {
+    // 1.初始化数据
+    var hashAAA = init()
+    var keys = hashAAA['keys']
+    var hash = hashAAA['hash']
+    // 2.生成键盘
+    // 遍历keys，生成kbd标签
+    generateKeyboard(keys,hash)
+    // 3.监听用户动作
+    listenUser(hash)
+
+
+    // 工具函数
+    function getFromLocalStorage(name){
+       return JSON.parse(localStorage.getItem(name) || 'null')
+    }
+
+
+    function tag(tagname){
+        return document.createElement(tagname)
+    }
+
+
+    function createSpan(textContent){
+        var sss = tag('span')
+        sss.className = 'sss'
+        sss.textContent = textContent
+        return sss
+    }
+
+
+    function createButton(id){
+        var bbb = tag('button')
+        bbb.textContent = '编辑'
+                    bbb.id = id
+          bbb.onclick = function(andeanniu){
+          var button2 = andeanniu['target']
+          var img2 = button2.previousSibling
+          var key = button2['id']
+          var xxx = prompt('输入要修改的网址')
+          hash[key] = xxx
+          img2.src = 'http://'+xxx+'/favicon.ico'
+          img2.onerror = function(xxxx){
+               xxxx.target.src='//i.loli.net/2017/11/10/5a05afbc5e183.png'
+              }
+          localStorage.setItem('zzz', JSON.stringify(hash))    
+        }
+        return bbb
+    }
+
+
+    function createImage(domain){
+        var iii = tag('img')
+        if(domain){
+            iii.src = 'http://'+domain+'/favicon.ico'
+        }else{
+            iii.src ='//i.loli.net/2017/11/10/5a05afbc5e183.png'
+        }
+        iii.onerror = function(xxxx){
+             xxxx.target.src='//i.loli.net/2017/11/10/5a05afbc5e183.png'
+            }
+        return iii
+    }
+
+
+    function init(){
+        var keys = {
         '0': ['q','w','e','r','t','y','u','i','o','p'],
         '1': ['a','s','d','f','g','h','j','k','l'],
         '2': ['z','x','c','v','b','n','m'],
-        length: 3
-    }
-    var hash = {
+        length: 3}
+        var hash = {
         'q': 'www.qq.com',
         'w': 'weibo.com',
         'e': 'ele.com',
@@ -34,53 +98,51 @@
         'b': 'www.bilibili.com',
         'd': 'www.douban.com',
         'c': 'cctv.com',
-        'x': 'www.xunlei.com',
-    }
-    var hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null')
-    if(hashInLocalStorage){
-        hash = hashInLocalStorage
-    }
-    index = 0
-    while(index< keys['length']){
-        ddd = document.createElement('div')
-        ddd.className = 'dddd'
-        yyy.appendChild(ddd)
-        row = keys[index]
-        index2 = 0
-        while(index2< row['length']){
-           kkk = document.createElement('kbd')
-           sss = document.createElement('span')
-           kkk.className = 'kkkk'
-           sss.className = 'sss'
-           sss.textContent = row[index2]
-           kkk.appendChild(sss)
-           bbb = document.createElement('button')
-           bbb.textContent = '编辑'
-           bbb.id = row[index2]
-           iii = document.createElement('img')
-           if(hash[row[index2]]){
-               iii.src = 'http://'+hash[row[index2]]+'/favicon.ico'
-           }else{
-               iii.src ='//i.loli.net/2017/11/10/5a05afbc5e183.png'
-           }
-           bbb.onclick = function(andeanniu){
-               key = andeanniu['target']['id']
-               xxx = prompt('输入要修改的网址')
-               hash[key] = xxx
-               localStorage.setItem('zzz', JSON.stringify(hash))
-           }
-           kkk.appendChild(iii)
-           kkk.appendChild(bbb)
-           ddd.appendChild(kkk)
-           index2 = index2 + 1
+        'x': 'www.xunlei.com',}
+        var hashInLocalStorage = getFromLocalStorage('zzz')
+        if(hashInLocalStorage){
+        hash = hashInLocalStorage}
+        return {
+            "keys": keys,
+            "hash": hash
         }
-        index = index + 1
     }
-    document.onkeypress = function(andejian){
-        key = andejian['key']
-        website = hash[key]
-        location.href = 'http://'+website
+
+
+    function generateKeyboard(keys,hash){
+        for(var index=0;index< keys['length'];index = index + 1 ){
+            var ddd = tag('div')
+            ddd.className = 'dddd'
+            yyy.appendChild(ddd)
+            
+            var row = keys[index]
+            for(var index2=0;index2< row['length'];index2 = index2 + 1 ){
+                    var sss = createSpan(row[index2])
+                    var bbb = createButton(row[index2])
+                    var iii = createImage(hash[row[index2]])
+                    
+                    var kkk = tag('kbd')
+                    kkk.className = 'kkkk'
+                    
+                    kkk.appendChild(sss)
+                    kkk.appendChild(iii)
+                    kkk.appendChild(bbb)
+                    ddd.appendChild(kkk)
+            }
+        }
+
     }
+
+
+    function listenUser(hash){
+        document.onkeypress = function(andejian){
+            var key = andejian['key']
+            var website = hash[key]
+            location.href = 'http://'+website
+        }
+    }
+
+
     </script>
 </body>
 </html>
