@@ -19,20 +19,22 @@
         length: 3
     }
     var hash = {
-        'q': 'qq.com',
+        'q': 'www.qq.com',
         'w': 'weibo.com',
         'e': 'ele.com',
-        'r': 'renren.com',
-        't': 'tenxun.com',
-        'y': 'youdao.com',
-        'u': 'uc.com',
+        't': 'v.qq.com',
+        'y': 'faxian.youku.com',
+        'j': 'www.jd.com',
         'i': 'iqiyi.com',
         'o': 'opera.com',
-        'p': undefined,
-        'a': 'acfun.com',
+        'a': 'www.acfun.cn',
         's': 'sohu.com',
         'z': 'zhihu.com',
-        'm': 'mcdonalds.com',
+        'm': 'www.mcdonalds.com.cn',
+        'b': 'www.bilibili.com',
+        'd': 'www.douban.com',
+        'c': 'cctv.com',
+        'x': 'www.xunlei.com',
     }
     var hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null')
     if(hashInLocalStorage){
@@ -47,17 +49,27 @@
         index2 = 0
         while(index2< row['length']){
            kkk = document.createElement('kbd')
+           sss = document.createElement('span')
            kkk.className = 'kkkk'
-           kkk.textContent = row[index2]
+           sss.className = 'sss'
+           sss.textContent = row[index2]
+           kkk.appendChild(sss)
            bbb = document.createElement('button')
            bbb.textContent = '编辑'
            bbb.id = row[index2]
+           iii = document.createElement('img')
+           if(hash[row[index2]]){
+               iii.src = 'http://'+hash[row[index2]]+'/favicon.ico'
+           }else{
+               iii.src ='//i.loli.net/2017/11/10/5a05afbc5e183.png'
+           }
            bbb.onclick = function(andeanniu){
                key = andeanniu['target']['id']
                xxx = prompt('输入要修改的网址')
                hash[key] = xxx
                localStorage.setItem('zzz', JSON.stringify(hash))
            }
+           kkk.appendChild(iii)
            kkk.appendChild(bbb)
            ddd.appendChild(kkk)
            index2 = index2 + 1

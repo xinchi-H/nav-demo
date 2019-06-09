@@ -16,6 +16,8 @@ main{
 
 #yyy{
   display: inline-block;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 20px;
 }
 
 #yyy > div:nth-child(2){
@@ -31,9 +33,7 @@ main{
 
 .kkkk{
   height: 40px;width: 50px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
 
   font-family: Helvetica;
   font-size: 16px;
@@ -56,16 +56,29 @@ main{
 
 
 .kkkk > button{
+  border-radius: 4px;
+  font-size: 12px;
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 2px;
+  right: 3px;
   display: none;
 }
 .kkkk:hover > button{
   display: inline-block;
 }
+.kkkk > img{
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  left: 4px;
+  bottom: 2px;
+}
 
-
+.sss{
+  position: absolute;
+  left: 4px;
+  top: 2px;
+}
 
 
 
